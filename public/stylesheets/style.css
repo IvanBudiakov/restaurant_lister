@@ -6,3 +6,15 @@ body {
 a {
   color: #00B7FF;
 }
+
+body{
+  background-color: #723106;
+  color : white
+}
+
+table, td, th{
+  border: solid white ;
+  border-collapse: collapse;
+  font-size : 19px;
+  padding : 10px
+}
