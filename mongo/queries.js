@@ -13,5 +13,21 @@ async function findListing(criteria)
   return result
 }
 
-module.exports = {findListing}  
+async function findListings(criteria, pageSize)
+{
+  let result = {}
+  await mongoClient.connect()
+    .then(connection=>connection.db('sample_restaurants'))
+    .then(db=>db.collection('restaurants'))
+    .then(restaurantListings=>{
+      return restaurantListings.find(criteria)
+        .limit(pageSize)
+      })
+    .then(cursor=>cursor.toArray())
+    .then(restaurant=>{result = restaurant})
+    .catch(error=>console.log(error))
+    return result
+}
+
+module.exports = {findListing, findListings}  
 

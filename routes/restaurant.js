@@ -8,7 +8,7 @@ var mongoQueries = require('./../mongo/queries')
 router.get('/', async (req, res) => {
 
     console.log("RESTAURANTS", mongoQueries)    
-    let result = await mongoQueries.findListing({})
+    let result = await mongoQueries.findListings({}, 5)
     console.log(result)
     res.send (result)
 });
