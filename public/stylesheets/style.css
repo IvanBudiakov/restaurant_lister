@@ -8,7 +8,7 @@ a {
 }
 
 body{
-  background-color: #723106;
+  background-color: #500FFF;
   color : white
 }
 
@@ -18,3 +18,33 @@ table, td, th{
   font-size : 19px;
   padding : 10px
 }
+
+button
+{
+  background-color:#8a20e2;
+	color: inherit;
+	border: none;
+	padding: 5px;
+  font-size: larger;
+	cursor: pointer;
+	outline: inherit;
+}
+
+div{
+  display: flex;
+  flex-direction: column;
+}
+
+select, option{
+  background-color: #8a20e2;
+  color : white
+}
+
+/* .divRecord{
+  background-color: black;
+}
+
+.divRest
+{
+  background-color: red;
+} */

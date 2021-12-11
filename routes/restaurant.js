@@ -6,11 +6,13 @@ var mongoQueries = require('./../mongo/queries')
 /* GET restaurant listing. */
 // localhost:3000/restaurant
 router.get('/', async (req, res) => {
-
-    console.log("RESTAURANTS", mongoQueries)    
-    let result = await mongoQueries.findListings({}, 5)
+    let result;
+    if(typeof req.query.pageSize == 'undefined')        // checking if pageSize is set
+        result = await mongoQueries.findListings({},5)
+    else 
+        result = await mongoQueries.findListings({}, parseInt(req.query.pageSize))
     console.log(result)
-    res.send (result)
+    res.send(result)
 });
 
 module.exports = router;

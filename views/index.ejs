@@ -5,16 +5,19 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
 
+    <form action="/">
+      <br>
+      <label for="pageSize">Page Size</label> 
+      <select name="pageSize" id="pageSize" onchange="setPageSize(this.value)"> 
+        <option value="1" >1</option>
+        <option value="3" >3</option>
+        <option value="5" selected="">5</option>
+        <option value="10" >10</option>
+      </select>
+    </form>
     <div id="divRest"></div>
     <button id="btnRest">Get Listings</button>
-    <h2 id = "h2Name"></h2>
-    <p id = "pAddress"></p>
-    <p id = "pBor"></p>
-    <p id = "pZip"></p>
-    <h3>Grades</h3>
     <script src="/javascripts/script.js"></script>
   </body>
 </html>
