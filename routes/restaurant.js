@@ -8,9 +8,10 @@ var mongoQueries = require('./../mongo/queries')
 router.get('/', async (req, res) => {
     let result;
     if(typeof req.query.pageSize == 'undefined')        // checking if pageSize is set
-        result = await mongoQueries.findListings({},5)
+        result = await mongoQueries.findListings({},5, req.query.pageNumber )
     else 
-        result = await mongoQueries.findListings({}, parseInt(req.query.pageSize))
+        result = await mongoQueries.findListings({}, 
+            parseInt(req.query.pageSize), req.query.pageNumber)
     console.log(result)
     res.send(result)
 });

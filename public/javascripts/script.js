@@ -1,12 +1,35 @@
 const divRest = document.querySelector("#divRest")
 divRest.classList.add('divRest');
 const btnRest = document.querySelector("#btnRest")
-
+const btnNext = document.querySelector("#bnext")
+const btnPrev = document.querySelector("#bprev")
 
 const divRecord = document.createElement('div') 
 divRecord.classList.add('divRecord');
 var pageSize = "5"
+var pageNumber = 0
 
+btnNext.onclick = () =>{
+    pageNumber += 1
+    fetch("restaurant?pageSize=" + pageSize+"&pageNumber=" + pageNumber)    // making sure we don't keep previous results
+        .then(divRest.innerHTML='')
+        .then(divRecord.innerHTML='')
+        .then(response => response.json())
+        .then(data => render(data))
+        .catch(error=>alert(error))
+    // return pageNumber
+}
+btnPrev.onclick = () =>{
+    if(pageNumber > 0)
+        pageNumber = pageNumber - 1
+        fetch("restaurant?pageSize=" + pageSize+"&pageNumber=" + pageNumber)    // making sure we don't keep previous results
+        .then(divRest.innerHTML='')
+        .then(divRecord.innerHTML='')
+        .then(response => response.json())
+        .then(data => render(data))
+        .catch(error=>alert(error))
+    // return pageNumber
+}
         // setPageSize sets pageSize to the value selected from the dropdown list
 function setPageSize(newSize)
 {
@@ -15,7 +38,7 @@ function setPageSize(newSize)
         // onclick hadler which takes data from localhost:3000/restaurant
         // where pageSize = whatever is selected from the dropdown list
 btnRest.onclick = () =>{
-        fetch("restaurant?pageSize=" + pageSize)    // making sure we don't keep previous results
+        fetch("restaurant?pageSize=" + pageSize+"&pageNumber=" + pageNumber)    // making sure we don't keep previous results
         .then(divRest.innerHTML='')
         .then(divRecord.innerHTML='')
         .then(response => response.json())
@@ -89,5 +112,3 @@ function render(data)
     // displaying outer div
     document.body.appendChild(divRest)
 }
-
-console.log(pageSize)
